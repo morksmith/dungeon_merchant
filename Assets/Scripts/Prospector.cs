@@ -248,6 +248,8 @@ public class Prospector : MonoBehaviour
         }
 
         ExpeditionText.text = Mathf.CeilToInt(ProspectTime / 60) + "m - " + UpgradeLevels[CurrentLevel].y + "G";
+
+        Save.SaveGame();
         
         
         
