@@ -16,6 +16,7 @@ public class ItemData
     public bool Equipped;
     public bool Selling;
     public bool Sold;
+    public bool Destroyed;
     public float SellTimer;
     public bool Special;
     public float XPBonus;

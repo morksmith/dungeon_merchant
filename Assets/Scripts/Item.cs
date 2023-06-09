@@ -29,6 +29,7 @@ public class Item : MonoBehaviour
     public bool Equipped;
     public bool Selling;
     public bool Sold;
+    public bool Destroyed = false;
     public bool Merchant;
     public bool Special;
     public string BonusString = " ";
@@ -97,6 +98,10 @@ public class Item : MonoBehaviour
             }
             else
             {
+                if (stockMan == null)
+                {
+                    stockMan = GameObject.FindObjectOfType<StockManager>();
+                }
                 ReadyToSell();
             }
             SellSlider.value = SellTimer / SellTime;
@@ -121,6 +126,7 @@ public class Item : MonoBehaviour
     }
     public void CollectGold()
     {
+        Destroyed = true;
         stockMan.CollectGold(Price);
         stockMan.PlayCollectSound();
         if (!stockMan.Tutorial)
@@ -318,6 +324,10 @@ public class Item : MonoBehaviour
         Sold = true;
         CollectButton.SetActive(true);
         CollectButton.GetComponentInChildren<TextMeshProUGUI>().text = "SOLD\n" + Price + "G";
+        if (stockMan == null)
+        {
+            stockMan = GameObject.FindObjectOfType<StockManager>();
+        }
         stockMan.NewSale();
         StoreData();
     }
@@ -376,6 +386,7 @@ public class Item : MonoBehaviour
         newItemData.Equipped = Equipped;
         newItemData.Selling = Selling;
         newItemData.Sold = Sold;
+        newItemData.Destroyed = Destroyed;
         newItemData.SellTimer = SellTimer;
         newItemData.Special = Special;
         newItemData.XPBonus = XPBonus;

@@ -91,12 +91,18 @@ public class SaveManager : MonoBehaviour
     }
     
     
-    public async void SaveGame()
+    public void SaveGame()
     {
-        while (Loading)
+        //while (Loading)
+        //{
+        //    await Task.Delay(1000);
+        //}
+
+        if (Loading)
         {
-            await Task.Delay(1000);
+            return;
         }
+        Debug.Log("started saving");
 
         //Set all save checks to false
         ItemsSaved = false;
@@ -204,13 +210,14 @@ public class SaveManager : MonoBehaviour
         string savePath;
         savePath = Application.persistentDataPath + "/SaveGame.json";
         File.WriteAllText(savePath, saveData);
-        Debug.Log("Did the save thing");
+        Debug.Log("Saved successfully!");
 
         
     }
 
     public void LoadGame()
     {
+        Debug.Log("started loading");
         Loading = true;
 
         //if(PlayerPrefs.GetInt("Closed Correctly") != 1)
@@ -248,7 +255,7 @@ public class SaveManager : MonoBehaviour
                 {
                     ItemGen.CreateSpecificItem(id);
                 }
-                else if (!id.Equipped)
+                else if (!id.Equipped && !id.Destroyed)
                 {
                     ItemGen.CreateSpecificItem(id);
                 }
@@ -354,6 +361,7 @@ public class SaveManager : MonoBehaviour
         }
 
         Loading = false;
+        Debug.Log("finished loading");
        
         
 

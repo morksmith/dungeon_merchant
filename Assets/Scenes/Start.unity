@@ -4481,7 +4481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v3.1 Monster Shop Games 2023
+  m_text: v3.4 Monster Shop Games 2023
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: afbf014436d404d40a6ca6d180265424, type: 2}
   m_sharedMaterial: {fileID: 3596085694989975384, guid: afbf014436d404d40a6ca6d180265424, type: 2}
